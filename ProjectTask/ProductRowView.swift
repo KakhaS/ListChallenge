@@ -12,12 +12,12 @@ struct ProductRowView: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            AsyncImage(url: URL(string: product.image_url_small ?? "")) { image in
+            AsyncImage(url: URL(string: product.imageUrlSmall ?? "")) { image in
                 image
                     .resizable()
                     .scaledToFill()
             } placeholder: {
-                Image(systemName: "Photo")
+                Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(.gray)
@@ -25,15 +25,15 @@ struct ProductRowView: View {
             .frame(width: 60, height: 60)
             .cornerRadius(8)
             VStack(alignment: .leading) {
-                Text(product.product_name)
+                Text(product.productName)
                     .font(.headline)
-                Text(product.brand_name)
+                Text(product.brandName)
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                Text("Hazard : \(product.hazard_rating)")
+                Text("Hazard : \(product.hazardRating)")
                     .font(.caption)
                     .padding(4)
-                    .background(hazardColor(category: product.hazard_rating_category))
+                    .background(hazardColor(category: product.hazardRatingCategory))
                     .foregroundColor(.white)
                     .cornerRadius(4)
             }
@@ -55,13 +55,13 @@ struct ProductRowView: View {
 
 
 #Preview {
-    ProductRowView(product: Product( uuid: "0",
-                                     product_name: "Georgian Shampoo",
-                                     brand_name: "GESHAMPOON",
+    ProductRowView(product: Product( id: "0",
+                                     productName: "Georgian Shampoo",
+                                     brandName: "GESHAMPOON",
                                      description: "A gentle shampoo for daily use",
-                                     image_url_small: nil,
-                                     image_url_large: nil,
-                                     product_category: "Hair Care",
-                                     hazard_rating: 8,
-                                     hazard_rating_category: .DIRTY))
+                                     imageUrlSmall: nil,
+                                     imageUrlLarge: nil,
+                                     productCategory: "Hair Care",
+                                     hazardRating: 8,
+                                     hazardRatingCategory: .DIRTY))
 }

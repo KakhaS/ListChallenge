@@ -5,13 +5,24 @@
 //  Created by Kakha on 19.08.25.
 //
 
-import Testing
+
+import XCTest
 @testable import ProjectTask
 
 struct ProjectTaskTests {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    final class ProductRepositoryTests: XCTestCase {
+        func testFetchProductsReturnsMockData() async throws {
+            // Arrange: use your mock repo
+            let repo = ProductRepositoryMock()
+            
+            // Act: fetch dummy products
+            let products = try await repo.fetchProducts()
+            
+            // Assert: validate results
+            XCTAssertEqual(products.count, 2, "Expected 2 mock products")
+            XCTAssertEqual(products.first?.productName, "Test Shampoo")
+            XCTAssertEqual(products.last?.hazardRatingCategory, .DIRTY)
+        }
     }
-
 }

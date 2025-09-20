@@ -14,18 +14,28 @@ struct ProductResponse: Codable {
 }
 
 
-struct Product: Codable, Identifiable {
-    let uuid: String
-    let product_name: String
-    let brand_name: String
+struct Product: Identifiable, Codable {
+    let id: String
+    let productName: String
+    let brandName: String
     let description: String?
-    let image_url_small: String?
-    let image_url_large: String?
-    let product_category: String
-    let hazard_rating: Int
-    let hazard_rating_category: HazardCategory
+    let imageUrlSmall: String?
+    let imageUrlLarge: String?
+    let productCategory: String
+    let hazardRating: Int
+    let hazardRatingCategory: HazardCategory
     
-    var id: String { uuid }
+    private enum CodingKeys: String, CodingKey {
+        case id = "uuid"
+        case productName = "product_name"
+        case brandName = "brand_name"
+        case description
+        case imageUrlSmall = "image_url_small"
+        case imageUrlLarge = "image_url_large"
+        case productCategory = "product_category"
+        case hazardRating = "hazard_rating"
+        case hazardRatingCategory = "hazard_rating_category"
+    }
 }
 
 
